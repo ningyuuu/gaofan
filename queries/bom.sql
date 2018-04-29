@@ -3,7 +3,7 @@ SELECT
   BillOfMaterials.MaterialID, 
   MaterialName, 
   Colour,
-  Specification,
+  MaterialDesc,
   ProvidedBy, 
   AmountToUse, 
   Unit,

@@ -177,55 +177,55 @@ VALUES ('GFWL0022',	'240T PONGEE',	'Black',	'Outer Material');
 INSERT INTO Materials(MaterialID, MaterialName, Colour, MaterialType)
 VALUES ('GFWL0023',	'Rubber Band',	'Black',	'Rubber Band');
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0029',	'57*43*34 Packaging Label',	'HxW 14CM x 12CM',	'Black on White', 'Ea', 3.07);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0030',	'2014 S 155/80A Womens Down Jacket',	'LxB 6CMx2.5CM',	'White on Grey', 'Ea', 3.09);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0031', '2014 M 160/84A Womens Down Jacket', 'LxB 6CMx2.5CM', 'White on Grey', 'Ea', 3.09);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0032',	'2014 XL 170/92A Womens Down Jacket', 'LxB 6CMx2.5CM', 'White on Grey', 'Ea', 3.09);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0033',	'2014 XXL 175/96A Womens Down Jacket', 'LxB 6CMx2.5CM', 'White on Grey', 'Ea', 3.09);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0034',	'15 Year Packaging No. 3',  '57cmx46cm', 'Grey', 'Ea', 3.59);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0035',	'5# Zip',  '75CM', 'Black', 'Ea', 3.59);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0036',	'5# Zip',  '75CM', 'Red', 'Ea', 5.76);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0038',	'5# Zip',  '76CM', 'Red', 'Ea', 5.76);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0040',	'5# Zip',  '77CM', 'Red', 'Ea', 5.77);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0051',	'5# Zip',  '78CM', 'Red', 'Ea', 5.80);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0056',	'Cardboard Box',  '60CMx45CMx41CM', 'Yellow', 'Ea', 10.80);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0057',	'2017 Certification S 155/80A',  '10CMx4CM', 'Green', 'Ea', 3.06);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0058',	'2017 Certification M 160/84A',  '10CMx4CM', 'Orange', 'Ea', 3.06);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0059',	'2017 Certification L 165/88A',  '10CMx4CM', 'Red', 'Ea', 3.06);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0060',	'2017 Certification XL 170/92A',  '10CMx4CM', 'Yellow', 'Ea', 3.06);
 
-INSERT INTO Materials(MaterialID, MaterialName, Specification, Colour, Unit, UnitCost)
+INSERT INTO Materials(MaterialID, MaterialName, MaterialDesc, Colour, Unit, UnitCost)
 VALUES ('GFWL0061',	'2017 Certification XXL 175/96A',  '10CMx4CM', 'Blue', 'Ea', 3.06);
 
 -- BILL OF MATERIALS
@@ -316,22 +316,15 @@ INSERT INTO Contracts(ContractID, TaxRate, Party1, Party2, DateOfContract)
 VALUES (101, 17.0, 1, 2, '2017-11-21 00:00:00');
 
 -- PRODUCTION BATCH
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (1, '2017-09-07 00:00:00', 'Check', 1);
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (2, '2017-09-08 00:00:00', 'Sampling', 1);
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (3, '2017-09-10 00:00:00', 'Contract', 1);
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (4, '2017-09-12 00:00:00', 'Accounting', 1);
-
 INSERT INTO ProductionBatches(ProductionBatchID, ProductID, ColourID, Quantity, SalePrice, CostPrice, 
 DateInInventory, DateOnShelf, StartProdDate, EndProdDate, CompletionDate, AmtArrived, 
-CheckedTSID, SamplingTSID, ContractTSID, AccountingTSID)
+CheckedTime, CheckedEmployee, SamplingTime, SamplingEmployee, 
+ContractTime, ContractEmployee, AccountingTime, AccountingEmployee)
 VALUES (1, '001', '0612', 160, 859, 180.75, 
 '2017-09-15 00:00:00', '2017-10-02 00:00:00', '2017-08-09 00:00:00', 
 '2017-08-17 00:00:00', '2017-09-13 00:00:00', 162,
-1, 2, 3, 4);
+'2017-09-07 00:00:00', 1, '2017-09-08 00:00:00', 1,
+'2017-09-10 00:00:00', 1, '2017-09-12 00:00:00', 1);
 
 -- PURCHASE LIST
 INSERT INTO PurchaseLists(PurchaseID, ContractID, SpecificationID, Quantity, ContractPrice, TotalCost, DateOfCompletion)
@@ -350,44 +343,31 @@ INSERT INTO PurchaseLists(PurchaseID, ContractID, SpecificationID, Quantity, Con
 VALUES (5, 101, '00106125', 18, 160.5, 2889, '2017-08-20 00:00:00');
 
 -- MANUFACTURING PLANS
-INSERT INTO ManufacturingPlans(MfgPlanID, SpecificationID, ProductionBatchID, PurchaseID)
+INSERT INTO ProductionOrders(PdtionOrderID, SpecificationID, ProductionBatchID, PurchaseID)
 VALUES (1, '00106121', 1, 1);
 
-INSERT INTO ManufacturingPlans(MfgPlanID, SpecificationID, ProductionBatchID, PurchaseID)
+INSERT INTO ProductionOrders(PdtionOrderID, SpecificationID, ProductionBatchID, PurchaseID)
 VALUES (2, '00106122', 1, 2);
 
-INSERT INTO ManufacturingPlans(MfgPlanID, SpecificationID, ProductionBatchID, PurchaseID)
+INSERT INTO ProductionOrders(PdtionOrderID, SpecificationID, ProductionBatchID, PurchaseID)
 VALUES (3, '00106123', 1, 3);
 
-INSERT INTO ManufacturingPlans(MfgPlanID, SpecificationID, ProductionBatchID, PurchaseID)
+INSERT INTO ProductionOrders(PdtionOrderID, SpecificationID, ProductionBatchID, PurchaseID)
 VALUES (4, '00106124', 1, 4);
 
-INSERT INTO ManufacturingPlans(MfgPlanID, SpecificationID, ProductionBatchID, PurchaseID)
+INSERT INTO ProductionOrders(PdtionOrderID, SpecificationID, ProductionBatchID, PurchaseID)
 VALUES (5, '00106125', 1, 5);
 
 -- STOCK RECEIVING
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (5, '2017-09-04 00:00:00', 'Checking', 1);
-
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (6, '2017-09-04 00:00:00', 'Contract Signing', 1);
-
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (7, '2017-09-04 00:00:00', 'Receiving', 1);
-
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (8, '2017-09-04 00:00:00', 'Accepted', 1);
-
-INSERT INTO StockReceiving(StockReceivingID, MfgPlanID, ProductionBatchID,
-BatchStatus, ReceivedAmt, CheckedTimeTSID, ContractSignTSID, ReceivingTSID, AcceptedTimeTSID)
-VALUES (1, 1, 1, 'COMPLETE', 31, 5, 6, 7, 8);
+INSERT INTO StockReceiving(StockReceivingID, PdtionOrderID, ProductionBatchID,
+BatchStatus, ReceivedAmt, CheckedTime, CheckedEmployee, ContractTime, ContractEmployee,
+ReceivingTime, ReceivingEmployee, AcceptedTime, AcceptedEmployee)
+VALUES (1, 1, 1, 'COMPLETE', 31, '2017-09-04 00:00:00', 1, '2017-09-04 00:00:00', 1,
+'2017-09-04 00:00:00', 1, '2017-09-04 00:00:00', 1);
 
 -- ORDER LISTS
-INSERT INTO ActionTimeStamps(TimeStampID, TimeStampDate, Purpose, EmployeeID) 
-VALUES (9, '2017-10-12 00:00:00', 'ProcessedOrder', 3);
-
-INSERT INTO OrdersLists(OrderID, OrderStatus, OrderType, Returned, ProcessedTSID)
-VALUES (1, 'DELIVERED', 'PURCHASE', 0, 9);
+INSERT INTO OrdersLists(OrderID, OrderStatus, OrderType, Returned, ProcessedTime, ProcessedEmployee)
+VALUES (1, 'DELIVERED', 'PURCHASE', 0, '2017-10-12 00:00:00', 3);
 
 -- MATERIAL PURCHASES
 INSERT INTO MaterialPurchases(MaterialPurchID, MaterialID, OrderQuantity, ReceivedQuantity,
@@ -398,4 +378,11 @@ VALUES (1, 'GFWL0035', 66, 66, '2017-07-23 00:00:00', '2017-08-16 00:00:00', '20
 INSERT INTO MaterialConsumptions(MaterialConsID, ProductionBatchID, MaterialID, ActualUsage, TimeOfRecord)
 VALUES(1, 1, 'GFWL0003', 40, '2017-07-02 00:00:00');
 
+-- MATERIAL LEVELS
+INSERT INTO MaterialLevels(MaterialLevelID, MaterialID, IsConsumption, MaterialConsID, Quantity, TimeOfRecord)
+VALUES(1, 'GFWL0003', 1, 1, 40, '2017-07-02 00:00:00');
+
+-- STOCK LEVELS
+INSERT INTO StockLevels(StockLevelID, SpecificationID, IsConsumption, StockReceivingID, Quantity, TimeOfRecord)
+VALUES (1, '00106121', 0, 1, 31, '2017-09-04 00:00:00');
 COMMIT;

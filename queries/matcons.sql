@@ -3,7 +3,7 @@ SELECT
   Materials.MaterialID,
   Materials.MaterialName,
   Materials.Colour,
-  Materials.Specification,
+  Materials.MaterialDesc,
   Materials.Unit,
   SUM(QuantityByBatch.Quantity * BillOfMaterials.AmountToUse) AS PlannedUsage,
   ActualUsage
@@ -17,8 +17,8 @@ ON MaterialConsumptions.ProductionBatchID = ProductionBatches.ProductionBatchID
 
 JOIN (
   SELECT ProductionBatchID, PurchaseLists.SpecificationID, PurchaseLists.Quantity as Quantity
-  FROM ManufacturingPlans, PurchaseLists
-  WHERE ManufacturingPlans.PurchaseID = PurchaseLists.PurchaseID
+  FROM ProductionOrders, PurchaseLists
+  WHERE ProductionOrders.PurchaseID = PurchaseLists.PurchaseID
 ) QuantityByBatch
 ON QuantityByBatch.ProductionBatchID = ProductionBatches.ProductionBatchID
 

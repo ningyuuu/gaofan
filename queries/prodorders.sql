@@ -5,10 +5,10 @@ SELECT
   PurchaseLists.Quantity,
   ProductionBatches.DateInInventory,
   ProductionBatches.DateOnShelf
-FROM ManufacturingPlans
+FROM ProductionOrders
 
 LEFT JOIN Specifications 
-ON ManufacturingPlans.SpecificationID = Specifications.SpecificationID
+ON ProductionOrders.SpecificationID = Specifications.SpecificationID
 
 LEFT JOIN Products
 ON Specifications.ProductID = Products.ProductID
@@ -20,8 +20,8 @@ LEFT JOIN Sizes
 ON Specifications.SizeID = Sizes.SizeID
 
 LEFT JOIN ProductionBatches
-ON ManufacturingPlans.ProductionBatchID = ProductionBatches.ProductionBatchID
+ON ProductionOrders.ProductionBatchID = ProductionBatches.ProductionBatchID
 
 LEFT JOIN PurchaseLists
-ON ManufacturingPlans.PurchaseID = PurchaseLists.PurchaseID
+ON ProductionOrders.PurchaseID = PurchaseLists.PurchaseID
 ;

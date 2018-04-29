@@ -2,11 +2,12 @@ SELECT
   OrderID, 
   OrderType, 
   OrderStatus, 
-  Returned, 
-  TimeStampDate AS OrderDate, 
-  EmployeeName AS ServicedBy
+  Returned,
+  OrdersLists.ProcessedEmployee,
+  Employees.EmployeeName,
+  ProcessedTime
 FROM OrdersLists
-LEFT JOIN ActionTimeStamps
-ON OrdersLists.ProcessedTSID = ActionTimeStamps.TimeStampID
+
 LEFT JOIN Employees
-ON ActionTimeStamps.EmployeeID = Employees.EmployeeID;
+ON OrdersLists.ProcessedEmployee = Employees.EmployeeID
+;

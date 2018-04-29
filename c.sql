@@ -23,14 +23,6 @@ CREATE TABLE Employees(
   EmployeeRole      VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE ActionTimeStamps(
-  TimeStampID       INTEGER PRIMARY KEY NOT NULL,
-  TimeStampDate     DATETIME NOT NULL,
-  Purpose           VARCHAR(255) NOT NULL,
-  EmployeeID        INTEGER NOT NULL,
-  FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
-);
-
 CREATE TABLE Specifications(
   SpecificationID   VARCHAR(20) PRIMARY KEY NOT NULL,
   ProductID         VARCHAR(20) NOT NULL,
@@ -45,7 +37,7 @@ CREATE TABLE Materials(
   MaterialID        VARCHAR(10) PRIMARY KEY NOT NULL,
   MaterialName      VARCHAR(255) NOT NULL,
   Colour            VARCHAR(255) NOT NULL,
-  Specification     VARCHAR(255),
+  MaterialDesc      VARCHAR(255),
   Unit              VARCHAR(10),
   UnitCost          NUMERIC(10, 2),
   MaterialType      VARCHAR(255)
@@ -79,8 +71,8 @@ CREATE TABLE Contracts(
   FOREIGN KEY (Party2) REFERENCES Parties(PartyID)
 );
 
-CREATE TABLE ManufacturingPlans(
-  MfgPlanID         INTEGER PRIMARY KEY NOT NULL,
+CREATE TABLE ProductionOrders(
+  PdtionOrderID         INTEGER PRIMARY KEY NOT NULL,
   SpecificationID   VARCHAR(20) NOT NULL,
   ProductionBatchID INTEGER NOT NULL,
   PurchaseID        INTEGER NOT NULL,
@@ -96,43 +88,48 @@ CREATE TABLE ProductionBatches(
   Quantity          INTEGER NOT NULL,
   SalePrice         NUMERIC(10, 2) NOT NULL,
   CostPrice         NUMERIC(10, 2) NOT NULL,
-  -- timestamps, dates are not compulsory for now
   DateInInventory   DATETIME,
   DateOnShelf       DATETIME,
   StartProdDate     DATETIME,
   EndProdDate       DATETIME,
   CompletionDate    DATETIME,
   AmtArrived        INTEGER,
-  -- for now, CheckedTSID is independent of that from StockReceiving
-  -- but it might be a similar thing that should merge in the future
-  CheckedTSID       INTEGER, 
-  SamplingTSID      INTEGER,
-  ContractTSID        INTEGER,
-  AccountingTSID    INTEGER,
+  CheckedTime       DATETIME,
+  CheckedEmployee   INTEGER,
+  SamplingTime      DATETIME,
+  SamplingEmployee  INTEGER,
+  ContractTime       DATETIME,
+  ContractEmployee   INTEGER,
+  AccountingTime       DATETIME,
+  AccountingEmployee   INTEGER, 
   FOREIGN KEY (ProductID) REFERENCES Products(ProductID),
   FOREIGN KEY (ColourID) REFERENCES Colours(ColourID),
-  FOREIGN KEY (CheckedTSID) REFERENCES ActionTimeStamps(TimeStampID),
-  FOREIGN KEY (SamplingTSID) REFERENCES ActionTimeStamps(TimeStampID),
-  FOREIGN KEY (ContractTSID) REFERENCES ActionTimeStamps(TimeStampID),
-  FOREIGN KEY (AccountingTSID) REFERENCES ActionTimeStamps(TimeStampID)
+  FOREIGN KEY (CheckedEmployee) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (SamplingEmployee) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (ContractEmployee) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (AccountingEmployee) REFERENCES Employees(EmployeeID)
 );
 
 CREATE TABLE StockReceiving(
   StockReceivingID  INTEGER PRIMARY KEY NOT NULL,
-  MfgPlanID         INTEGER NOT NULL,
+  PdtionOrderID         INTEGER NOT NULL,
   ProductionBatchID INTEGER NOT NULL,
   BatchStatus       VARCHAR(255) NOT NULL,
   ReceivedAmt       INTEGER NOT NULL,
-  CheckedTimeTSID   INTEGER NOT NULL,
-  ContractSignTSID  INTEGER NOT NULL,
-  ReceivingTSID     INTEGER NOT NULL,
-  AcceptedTimeTSID  INTEGER NOT NULL,
-  FOREIGN KEY (MfgPlanID) REFERENCES ManufacturingPlans(MfgPlanID),
+  CheckedTime       DATETIME NOT NULL,
+  CheckedEmployee   INTEGER NOT NULL,
+  ContractTime       DATETIME NOT NULL,
+  ContractEmployee   INTEGER NOT NULL,
+  ReceivingTime       DATETIME NOT NULL,
+  ReceivingEmployee   INTEGER NOT NULL,
+  AcceptedTime       DATETIME NOT NULL,
+  AcceptedEmployee   INTEGER NOT NULL,
+  FOREIGN KEY (PdtionOrderID) REFERENCES ProductionOrders(PdtionOrderID),
   FOREIGN KEY (ProductionBatchID) REFERENCES ProductionBatches(ProductionBatchID),
-  FOREIGN KEY (CheckedTimeTSID) REFERENCES ActionTimeStamps(TimeStampID),
-  FOREIGN KEY (ContractSignTSID) REFERENCES ActionTimeStamps(TimeStampID),
-  FOREIGN KEY (ReceivingTSID) REFERENCES ActionTimeStamps(TimeStampID),
-  FOREIGN KEY (AcceptedTimeTSID) REFERENCES ActionTimeStamps(TimeStampID)
+  FOREIGN KEY (CheckedEmployee) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (ContractEmployee) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (ReceivingEmployee) REFERENCES Employees(EmployeeID),
+  FOREIGN KEY (AcceptedEmployee) REFERENCES Employees(EmployeeID)
 );
 
 CREATE TABLE PurchaseLists(
@@ -152,8 +149,9 @@ CREATE TABLE OrdersLists(
   OrderStatus       VARCHAR(255) NOT NULL,
   OrderType         VARCHAR(255) NOT NULL,
   Returned          BOOLEAN,
-  ProcessedTSID     INTEGER,
-  FOREIGN KEY (ProcessedTSID) REFERENCES ActionTimeStamps(TimeStampID)
+  ProcessedTime     DATETIME,
+  ProcessedEmployee INTEGER,
+  FOREIGN KEY (ProcessedEmployee) REFERENCES Employees(EmployeeID)
 );
 
 CREATE TABLE MaterialPurchases(
@@ -175,6 +173,32 @@ CREATE TABLE MaterialConsumptions(
   TimeOfRecord      DATETIME,
   FOREIGN KEY (ProductionBatchID) REFERENCES ProductionBatches(ProductionBatchID),
   FOREIGN KEY (MaterialID) REFERENCES Materials(MaterialID)
+);
+
+CREATE TABLE MaterialLevels(
+  MaterialLevelID   INTEGER PRIMARY KEY NOT NULL,
+  MaterialID        VARCHAR(10) NOT NULL,
+  IsConsumption     BOOLEAN NOT NULL,
+  MaterialPurchID   INTEGER,
+  MaterialConsID    INTEGER,
+  Quantity          NUMERIC(10, 2),
+  TimeOfRecord      DATETIME,
+  FOREIGN KEY (MaterialID) REFERENCES Materials(MaterialID),
+  FOREIGN KEY (MaterialPurchID) REFERENCES MaterialPurchases(MaterialPurchID),
+  FOREIGN KEY (MaterialConsID) REFERENCES MaterialConsumptions(MaterialConsID)
+);
+
+CREATE TABLE StockLevels(
+  StockLevelID      INTEGER PRIMARY KEY NOT NULL,
+  SpecificationID   VARCHAR(20) NOT NULL,
+  IsConsumption     BOOLEAN NOT NULL,
+  OrderID           INTEGER,
+  StockReceivingID  INTEGER,
+  Quantity          NUMERIC(10, 2),
+  TimeOfRecord      DATETIME,
+  FOREIGN KEY (SpecificationID) REFERENCES Specifications(SpecificationID),
+  FOREIGN KEY (OrderID) REFERENCES OrdersLists(OrderID),
+  FOREIGN KEY (StockReceivingID) REFERENCES StockReceiving(StockReceivingID)
 );
 
 COMMIT;
